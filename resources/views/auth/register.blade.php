@@ -21,25 +21,42 @@
         <div class="card-header">Register As Company</div>
         <div class="card-body">
             <form method=post>
+            {{csrf_field()}}
+
                 <div class="form-group">
                     <label for="inputName">Name</label>
-                    <input class="form-control" name="name" id="inputName" type="text" placeholder="enter your full name">
+                    <input class="form-control  @error('name') is-invalid @enderror" name="name" id="inputName" type="text" value="{{old('name')}}" placeholder="enter your full name">
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+                
                 <div class="form-group">
                     <label for="inputCompany">Company Name</label>
-                    <input class="form-control" name="company" id="inputCompany" type="text" placeholder="enter your company name">
+                    <input class="form-control  @error('company') is-invalid @enderror" name="company" id="inputCompany" type="text" value="{{old('company')}}" placeholder="enter your company name">
+                    @error('company')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">Email</label>
-                    <input class="form-control" name="email" id="inputEmail" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input class="form-control  @error('email') is-invalid @enderror" name="email" id="inputEmail" type="email" value="{{old('email')}}" aria-describedby="emailHelp" placeholder="Enter email">
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="inputPassword">Password</label>
-                    <input class="form-control" name="password" id="inputPassword" type="password" placeholder="enter a new password">
+                    <input class="form-control  @error('password') is-invalid @enderror" name="password" id="inputPassword" type="password" value="{{old('password')}}" placeholder="enter a new password">
+                
+                    @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+                
                 <div class="form-group">
                     <label for="inputPassword">Re-Type Password</label>
-                    <input class="form-control" name="repassword" id="inputPassword" type="password" placeholder="re type the new password">
+                    <input class="form-control  @error('password') is-invalid @enderror" name="password_confirmation" id="inputPassword" type="password" placeholder="re type the new password">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
             </form>

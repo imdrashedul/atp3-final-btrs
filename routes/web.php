@@ -16,6 +16,7 @@ Route::group(['middleware' => ['user.guest']], function () {
     Route::get('/login', 'Auth\Login@index')->name('login');
     Route::post('/login', 'Auth\Login@verify')->name('loginVerify');
     Route::get('/register', 'Auth\Register@index')->name('register');
+    Route::post('/register', 'Auth\Register@create')->name('registerVerify');
 });
 
 Route::group(['middleware' => ['auth.custom']], function () {

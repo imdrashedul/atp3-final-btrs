@@ -20,11 +20,17 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login Here</div>
         <div class="card-body">
+        @if(Session::has('register'))
+            <div class="alert alert-success" role="alert">
+                    {{ Session::get('register')}}
+            </div>
+        @endif
+        @php $registered = Session::has('register_email') ? Session::get('register_email') : '' @endphp
             <form method=post>
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="inputEmail">Email</label>
-                    <input class="form-control @error('email') is-invalid @enderror" name="email" id="inputEmail" type="email" value="{{old('email')}}" placeholder="Enter email">
+                    <input class="form-control @error('email') is-invalid @enderror" name="email" id="inputEmail" type="email" value="{{ old('email', $registered) }}" placeholder="Enter email">
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
