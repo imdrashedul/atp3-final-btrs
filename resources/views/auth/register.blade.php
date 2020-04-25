@@ -20,7 +20,7 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Register As Company</div>
         <div class="card-body">
-            <form method=post>
+            <form method="post">
             {{csrf_field()}}
 
                 <div class="form-group">

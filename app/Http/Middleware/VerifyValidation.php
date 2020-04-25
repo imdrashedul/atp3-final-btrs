@@ -15,7 +15,7 @@ class VerifyValidation
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('user') && is_array($user = $request->session()->get('user')) && isset($user['validated']) && $user['validated']==1){
+        if(user()->validated==1){
             return $next($request);
         }
 

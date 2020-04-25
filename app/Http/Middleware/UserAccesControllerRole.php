@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AuthCustom
+class UserAccesControllerRole
 {
     /**
      * Handle an incoming request.
@@ -13,12 +13,14 @@ class AuthCustom
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$role)
     {
-        if(!empty($user = user())){
-            return $next($request);
+
+
+        if(!empty($role) && !user_has_role($role)) {
+            return redirect()->route('system');
         }
 
-        return route('login');
+        return $next($request);
     }
 }

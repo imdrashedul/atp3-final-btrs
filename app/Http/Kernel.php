@@ -64,6 +64,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.custom' => \App\Http\Middleware\AuthCustom::class,
         'user.valid' => \App\Http\Middleware\VerifyValidation::class,
-        'user.guest' => \App\Http\Middleware\VerifyGuest::class
+        'user.guest' => \App\Http\Middleware\VerifyGuest::class,
+        'access.role' => \App\Http\Middleware\UserAccesControllerRole::class,
+        'access.feature' => \App\Http\Middleware\UserAccesControllerFeature::class
     ];
 }

@@ -24,15 +24,7 @@ class Login extends Controller
 
         if($user && $user->password == $filtered['password']) {
 
-            $request->session()->put('user', [
-                'name' => $user->name,
-                'email' => $user->email,
-                'company' => $user->company,
-                'operator' => $user->operator,
-                'role' => $user->role,
-                'validated' => $user->validated,
-                'registered' => $user->registered
-            ]);
+            $request->session()->put('user', $user);
 
             return redirect()->route('system');
         }

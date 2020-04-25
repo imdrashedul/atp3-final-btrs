@@ -15,7 +15,7 @@ class VerifyGuest
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('user')){
+        if(!empty($user = user())){
             return redirect()->route('system');
         }
         return $next($request);
