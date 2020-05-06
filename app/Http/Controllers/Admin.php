@@ -5,25 +5,24 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class SupportStaff extends Controller
+class Admin extends Controller
 {
     public function __construct()
     {
         $this->middleware([
-           'access.role:super,admin',
-           'access.feature:managesupportstaffs'
+            'access.role:super',
         ]);
     }
 
     public function index()
     {
-        $users = User::where('validated', 1)->where('roleid', roleid_by_name('supportstaff'))->orderBy('id', 'DESC')->get();
-        return view('system.supportstaff.index', ['users' => $users]);
+        $users = User::where('validated', 1)->where('roleid', roleid_by_name('admin'))->orderBy('id', 'DESC')->get();
+        return view('system.admin.index', ['users' => $users]);
     }
 
     public function add()
     {
-        return view('system.supportstaff.add');
+        return view('system.admin.add');
     }
 
     public function addpost(Request $request)
@@ -38,7 +37,7 @@ class SupportStaff extends Controller
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => $fields['password'],
-            'roleid' => roleid_by_name('supportstaff'),
+            'roleid' => roleid_by_name('admin'),
             'validated' => 1,
             'registered' => date('Y-m-d H:i:s')
         ]);
@@ -46,8 +45,8 @@ class SupportStaff extends Controller
         if($user->id)
         {
             attach_role_permissions($user);
-            $request->session()->flash('status_success', 'Support Staff '.$user->name.' Added successfully');
-            return redirect()->route('supportstaff');
+            $request->session()->flash('status_success', 'Admin '.$user->name.' Added successfully');
+            return redirect()->route('admin');
         }
 
         $request->session()->flash('status_error', 'Something went wrong. Please try again');
@@ -59,7 +58,7 @@ class SupportStaff extends Controller
         $user = User::find($id);
 
         if($user!=null) {
-            return view('system.supportstaff.edit', ['user' => $user]);
+           return view('system.admin.edit', ['user' => $user]);
         }
 
         $request->session()->flash('status_error', 'User not found');
@@ -83,7 +82,7 @@ class SupportStaff extends Controller
 
             if($user->save()) {
                 $request->session()->flash('status_success', 'User '.$user->name.' modified successfully');
-                return redirect()->route('supportstaff');
+                return redirect()->route('admin');
             }
 
             $request->session()->flash('status_error', 'Something went wrong. Please try again');
@@ -102,7 +101,7 @@ class SupportStaff extends Controller
         if($user!=null) {
             if($user->delete()) {
                 $request->session()->flash('status_success', 'User '.$user->name.' removed successfully');
-                return redirect()->route('supportstaff');
+                return redirect()->route('admin');
             }
 
             $request->session()->flash('status_error', 'Something went wrong. Please try again');
@@ -111,37 +110,6 @@ class SupportStaff extends Controller
 
         $request->session()->flash('status_error', 'User not found');
         return redirect()->back();
-    }
-
-    public function ajaxsearch(Request $request)
-    {
-        $users = User::where('roleid', roleid_by_name('supportstaff'));
-
-        if($request->has('search') && !empty($request->search))
-        {
-            $users->where(function ($query) use ($request) {
-                $query->where('name', 'like', '%'.$request->search.'%')->orWhere('email', $request->search);
-            });
-        }
-
-        $users = $users->orderBy('id', 'DESC')->get();
-        $response = [];
-
-        if(!empty($users))
-        {
-            foreach ($users as $user) {
-                $response[] = [
-                    $user->name,
-                    $user->email,
-                    date_format(date_create($user->registered),"j M Y g:i a"),
-                    (user_has_role(['admin', 'super']) && user_has_access(['managesupportstaffpermission']) ? '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $user->id]).'">Permissions</a>' : '').
-                    ' <a class="btn btn-primary btn-sm" href="'.route('supportstaffedit', ['id' => $user->id]).'">Update</a>'.
-                    ' <a class="btn btn-danger btn-sm" href="'.route('supportstaffdelete', ['id' => $user->id]).'">Remove</a>'
-                ];
-            }
-        }
-
-        return response()->json($response);
     }
 
 }

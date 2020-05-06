@@ -39,94 +39,103 @@
                 </li>
                 @endif
 
-                {{--@if(user()->role == 'admin')--}}
+                @if(user_has_role(['super']))
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Support Staff">
+                        <a class="nav-link" href="{{ route('admin') }}">
+                            <i class="fa fa-fw fa-bullhorn"></i>
+                            <span class="nav-link-text">Admin</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(user_has_role(['super','admin']) && user_has_access(['managesupportstaffs']))
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Support Staff">
-                    <a class="nav-link" href="/system/supportstaff">
+                    <a class="nav-link" href="{{ route('supportstaff') }}">
                       <i class="fa fa-fw fa-bullhorn"></i>
                       <span class="nav-link-text">Support Staff</span>
                     </a>
                 </li>
-                {{--@endif--}}
+                @endif
 
-                {{--@if(user()->role == 'admin' || user()->role == 'supportstaff' )--}}
+                @if(user_has_role(['super','admin','supportstaff']) && user_has_access(['viewbusmanager', 'editbusmanager', 'removebusmanager']))
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Manager">
                     <a class="nav-link" href="/system/busmanager">
                       <i class="fa fa-fw fa-user"></i>
                       <span class="nav-link-text">Bus Manager</span>
                     </a>
                 </li>
+                @endif
+
+                {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Counter">--}}
+                    {{--<a class="nav-link" href="/system/buscounter">--}}
+                      {{--<i class="fa fa-fw fa-university"></i>--}}
+                      {{--<span class="nav-link-text">Bus Counter</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Counter">
-                    <a class="nav-link" href="/system/buscounter">
-                      <i class="fa fa-fw fa-university"></i>
-                      <span class="nav-link-text">Bus Counter</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">--}}
+                    {{--<a class="nav-link" href="/system/counterstaff">--}}
+                      {{--<i class="fa fa-fw fa-users"></i>--}}
+                      {{--<span class="nav-link-text">Counter Staff</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">
-                    <a class="nav-link" href="/system/counterstaff">
-                      <i class="fa fa-fw fa-users"></i>
-                      <span class="nav-link-text">Counter Staff</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">--}}
+                    {{--<a class="nav-link" href="/system/buses">--}}
+                      {{--<i class="fa fa-fw fa-bus"></i>--}}
+                      {{--<span class="nav-link-text">Manage Bus</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">
-                    <a class="nav-link" href="/system/buses">
-                      <i class="fa fa-fw fa-bus"></i>
-                      <span class="nav-link-text">Manage Bus</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Schedule">--}}
+                    {{--<a class="nav-link" href="/system/busschedule">--}}
+                      {{--<i class="fa fa-fw fa-clock-o"></i>--}}
+                      {{--<span class="nav-link-text">Bus Schedule</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Schedule">
-                    <a class="nav-link" href="/system/busschedule">
-                      <i class="fa fa-fw fa-clock-o"></i>
-                      <span class="nav-link-text">Bus Schedule</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tickets">--}}
+                    {{--<a class="nav-link" href="/system/tickets">--}}
+                      {{--<i class="fa fa-fw fa-ticket"></i>--}}
+                      {{--<span class="nav-link-text">Tickets</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tickets">
-                    <a class="nav-link" href="/system/tickets">
-                      <i class="fa fa-fw fa-ticket"></i>
-                      <span class="nav-link-text">Tickets</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Book Tickets">--}}
+                    {{--<a class="nav-link" href="/system/booktickets">--}}
+                      {{--<i class="fa fa-fw fa-keyboard-o"></i>--}}
+                      {{--<span class="nav-link-text">Book Tickets</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Book Tickets">
-                    <a class="nav-link" href="/system/booktickets">
-                      <i class="fa fa-fw fa-keyboard-o"></i>
-                      <span class="nav-link-text">Book Tickets</span>
-                    </a>
-                </li>
-                {{--@endif--}}
-
-                {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Transactions">
-                    <a class="nav-link" href="/system/transaction">
-                      <i class="fa fa-fw fa-money"></i>
-                      <span class="nav-link-text">Transactions</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Transactions">--}}
+                    {{--<a class="nav-link" href="/system/transaction">--}}
+                      {{--<i class="fa fa-fw fa-money"></i>--}}
+                      {{--<span class="nav-link-text">Transactions</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 {{--@if(user()->role == 'admin' || user()->role == 'supportstaff' )--}}
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Support Tickets">
-                    <a class="nav-link" href="/supportticket">
-                      <i class="fa fa-fw fa-tags"></i>
-                      <span class="nav-link-text">Support Tickets</span>
-                    </a>
-                </li>
+                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Support Tickets">--}}
+                    {{--<a class="nav-link" href="/supportticket">--}}
+                      {{--<i class="fa fa-fw fa-tags"></i>--}}
+                      {{--<span class="nav-link-text">Support Tickets</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 {{--@endif--}}
 
                 @if(user()->role->name == 'super')
@@ -212,5 +221,6 @@
 <script src="{{ asset('/assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('/assets/js/sb-admin.min.js') }}"></script>
+@yield('javascript', '')
 </body>
 </html>

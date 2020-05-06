@@ -36,8 +36,27 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::get('/system/permission/user/{id}', 'ManageRole@permissionuser')->name('managerole_permissionuser')->middleware(['access.role:super,admin']);
         Route::post('/system/permission/user/{id}', 'ManageRole@permissionusermodify')->middleware(['access.role:super,admin,busmanager']);
 
+        // Site Admins
+        Route::get('/system/admin', 'Admin@index')->name('admin');
+        Route::get('/system/admin/add', 'Admin@add')->name('adminadd');
+        Route::post('/system/admin/add', 'Admin@addpost');
+        Route::get('/system/admin/edit/{id}', 'Admin@edit')->name('adminedit');
+        Route::post('/system/admin/edit/{id}', 'Admin@editpost');
+        Route::get('/system/admin/delete/{id}', 'Admin@delete')->name('admindelete');
+
+        // Bus Manager Verification
         Route::get('/system/validation', 'Validation@index')->name('validation');
         Route::get('/system/validation/validate/{id}', 'Validation@validated')->name('validation_validate');
         Route::get('/system/validation/remove/{id}', 'Validation@delete')->name('validation_delete');
+
+        // Support Staff
+        Route::get('/system/supportstaff', 'SupportStaff@index')->name('supportstaff');
+        Route::get('/system/supportstaff/add', 'SupportStaff@add')->name('supportstaffadd');
+        Route::post('/system/supportstaff/add', 'SupportStaff@addpost');
+        Route::get('/system/supportstaff/edit/{id}', 'SupportStaff@edit')->name('supportstaffedit');
+        Route::post('/system/supportstaff/edit/{id}', 'SupportStaff@editpost');
+        Route::get('/system/supportstaff/delete/{id}', 'SupportStaff@delete')->name('supportstaffdelete');
+        Route::post('/system/supportstaff/ajax/search', 'SupportStaff@ajaxsearch')->name('ajax_search_supportstaff');
+
     });
 });

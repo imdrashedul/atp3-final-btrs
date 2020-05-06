@@ -3,9 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Role;
-use App\RolePermission;
-use App\UserPermission;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -30,22 +27,14 @@ class Register extends Controller
         $user->company    = $request->company;  
         $user->email      = $request->email;
         $user->password   = $request->password;
-        $user->roleid       = Role::where('name', 'busmanager')->first()->id;
+        $user->roleid       = roleid_by_name('busmanager');
         $user->validated  = "0";
         $user->registered = date('Y-m-d H:i:s');
 
 
         if($user->save())
         {
-           $permissions = array_map(function ($permission) use ( $user) {
-                return [
-                    'userid' => $user->id,
-                    'permissionid' => $permission->id
-                ];
-           }, $user->role->permissions->all());
-
-           if(!empty($permissions)) UserPermission::insert( $permissions );
-
+            attach_role_permissions($user);
             $request->session()->flash('register', $request->name.' You have join successfully');
             $request->session()->flash('register_email', $request->email);
             return redirect()->route('login');

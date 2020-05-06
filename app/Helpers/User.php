@@ -1,4 +1,5 @@
 <?php
+
 if (!function_exists('user')) {
     function user()
     {
@@ -21,5 +22,27 @@ if (!function_exists('user_has_access')) {
         })->count();
 
         return $permission > 0;
+    }
+}
+
+if (!function_exists('attach_role_permissions')) {
+    function attach_role_permissions(\App\User $user)
+    {
+        $permissions = array_map(function ($permission) use ( $user) {
+            return [
+                'userid' => $user->id,
+                'permissionid' => $permission->id
+            ];
+        }, $user->role->permissions->all());
+
+        if(!empty($permissions)) \App\UserPermission::insert( $permissions );
+    }
+}
+
+if (!function_exists('roleid_by_name')) {
+    function roleid_by_name($name)
+    {
+        $role = \App\Role::where('name', $name)->first();
+        return $role != null ? $role->id : 0;
     }
 }
