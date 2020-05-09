@@ -66,23 +66,23 @@
                 </li>
                 @endif
 
-                {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Counter">--}}
-                    {{--<a class="nav-link" href="/system/buscounter">--}}
-                      {{--<i class="fa fa-fw fa-university"></i>--}}
-                      {{--<span class="nav-link-text">Bus Counter</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--@endif--}}
+                    @if(user_has_role(['super','admin','busmanager']) && user_has_access(['viewbuscounter', 'addbuscounter', 'editbuscounter', 'removebuscounter']))
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Counter">
+                        <a class="nav-link" href="/system/buscounter">
+                          <i class="fa fa-fw fa-university"></i>
+                          <span class="nav-link-text">Bus Counter</span>
+                      </a>
+                    </li>
+                    @endif
 
-                {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">--}}
-                    {{--<a class="nav-link" href="/system/counterstaff">--}}
-                      {{--<i class="fa fa-fw fa-users"></i>--}}
-                      {{--<span class="nav-link-text">Counter Staff</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--@endif--}}
+                    @if(user_has_role(['super','admin','busmanager']) && user_has_access(['viewcounterstaff', 'addcounterstaff', 'editcounterstaff', 'removecounterstaff']))
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">
+                        <a class="nav-link" href="/system/counterstaff">
+                          <i class="fa fa-fw fa-users"></i>
+                          <span class="nav-link-text">Counter Staff</span>
+                        </a>
+                    </li>
+                    @endif
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
                 {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">--}}

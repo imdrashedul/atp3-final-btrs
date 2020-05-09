@@ -30,4 +30,16 @@ class User extends Model
     {
         return $this->hasMany('App\UserPermission', 'userid');
     }
+
+    public function company()
+    {
+        return $this->belongsTo('App\BusCounter','operator');
+    }
+
+    public function companyname()
+    {
+        return $this->belongsTo('App\BusCounter','operator');
+    }
+    
+
 }
