@@ -31,22 +31,25 @@ class BusCounter extends Controller
     public function addpost(Request $request)
     {
         $fields = $request->validate([
-            'operator '      => 'required',
+            'operator'      => 'required',
             'name'          => 'required',
             'location'      => 'required',
         ]);
-
+        
         $buscounter = \App\BusCounter::create([
-            'name' => $fields['name'],
-            'operatorid' => $fields['operator'],
-            'location' => $fields['location'],
+            'name' => $request->name,
+            'operatorid' => $request->operator,
+            'location' => $request->location,
         ]);
 
         if($buscounter->id)
         {
            
-            $request->session()->flash('status_success', 'Bus Counter' .$buscounter->name.' Added successfully');
-            return redirect()->route('buscounter');
+            
+          $request->session()->flash('status_success', 'Bus Counter' .$buscounter->name.' Added successfully');
+          return redirect()->route('buscounter');
+            
+           
         }
 
         $request->session()->flash('status_error', 'Something went wrong. Please try again');

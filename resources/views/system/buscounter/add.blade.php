@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Location</label>
+                    <label for="inputName" class="col-sm-2 col-form-label">Location</label>
                     <div class="col-sm-10">
                         <input type="text" name="location" class="form-control @error('location') is-invalid @enderror" id="inputLocation" placeholder="Enter location">
                         @error('location')
