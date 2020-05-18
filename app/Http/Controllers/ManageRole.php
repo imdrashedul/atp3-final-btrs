@@ -78,6 +78,8 @@ class ManageRole extends Controller
 
                         UserPermission::insert($newPermissions);
                     }
+
+                    $request->session()->flash('status_success', 'Permission Modified Successfully');
                 }
             }
         }

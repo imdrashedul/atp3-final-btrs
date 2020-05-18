@@ -4,6 +4,9 @@
 
 @section('body')
     <div class="card">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Bus Managers
+        </div>
         <div class="card-body">
             <div class="row mb-3">
                 <div class="col col-sm-12 col-md-8 col-lg-10">
@@ -33,7 +36,7 @@
                                 <td>{{ date_format(date_create($user->registered),"j M Y g:i a") }}</td>
                                 <td>{{ $user->company }}</td>
                                 <td style="text-align: center;">
-                                    @if(user_has_role(['admin', 'super','supportstaff']) && user_has_access(['managebusmanagerpermission']))
+                                    @if(user_has_role(['admin','super']) && user_has_access(['managebusmanagerpermission']))
                                     <a class="btn btn-secondary btn-sm" href="{{ route('managerole_permissionuser', ['id' => $user->id]) }}">Permissions</a>
                                     @endif
                                     <a class="btn btn-primary btn-sm" href="{{ route('busmanageredit', ['id' => $user->id]) }}">Update</a>

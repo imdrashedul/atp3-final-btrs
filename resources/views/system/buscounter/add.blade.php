@@ -11,6 +11,9 @@
         <div class="card-body">
             <form method="post" action="{{ route('buscounteradd') }}">
                 @csrf
+                @if(user()->roleid==roleid_by_name('busmanager'))
+                <input type="hidden" name="operator" value="{{user()->id}}">
+                @else
                 <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Operator</label>
                     <div class="col-sm-10">
@@ -22,16 +25,19 @@
                                     @endforeach
                                 @else
                                     <option value="">No Operator Found</option>
-                                
                                 @endif
                             </select>
+                        @error('operator')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div>              
+                </div>
+                @endif
 
                 <div class="form-group row">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Name</label>
+                    <label for="inputCounter" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror" value="{{ old('name') }}" id="inputName" placeholder="Enter name ">
+                        <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror" value="{{ old('name') }}" id="inputCounter" placeholder="Enter name ">
                         @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
