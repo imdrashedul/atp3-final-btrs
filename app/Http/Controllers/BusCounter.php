@@ -10,14 +10,18 @@ class BusCounter extends Controller
     public function __construct()
     {
         $this->middleware([
-           'access.role:super,admin,busmanager'
+           'access.role:super,admin,busmanager,supportstaff'
         ]);
     }
 
     public function index()
     {
+        if(user()->roleid == roleid_by_name('busmanager')) {
+            $buscounter = \App\BusCounter::where('operatorid', user()->id)->orderBy('id', 'DESC')->get();
+        } else {
+            $buscounter = \App\BusCounter::orderBy('id', 'DESC')->get();
+        }
 
-        $buscounter = \App\BusCounter::orderBy('id', 'DESC')->get();
         return view('system.buscounter.index', ['buscounter' => $buscounter]);
     }
 
@@ -31,9 +35,9 @@ class BusCounter extends Controller
     public function addpost(Request $request)
     {
         $fields = $request->validate([
-            'operator '      => 'required',
-            'name'          => 'required',
-            'location'      => 'required',
+            'operator' => 'required',
+            'name' => 'required',
+            'location' => 'required'
         ]);
 
         $buscounter = \App\BusCounter::create([
@@ -44,7 +48,6 @@ class BusCounter extends Controller
 
         if($buscounter->id)
         {
-           
             $request->session()->flash('status_success', 'Bus Counter' .$buscounter->name.' Added successfully');
             return redirect()->route('buscounter');
         }
@@ -116,32 +119,66 @@ class BusCounter extends Controller
         return redirect()->back();
     }
 
-
     public function ajaxsearch(Request $request)
     {
-        $buscounter = \App\BusCounter::where('id');
-
         if($request->has('search') && !empty($request->search))
         {
-            $buscounter->whereHas('operator', function ($query) use ($request) {
-                $query->where('company', 'like', '%'.$request->search.'%');
-            });
+            if(user()->roleid == roleid_by_name('busmanager')) {
+                $buscounter = \App\BusCounter::where('operatorid', user()->id)->where(function ($q)use ($request) {
+                    $q->whereHas('operator', function ($query) use ($request) {
+                        $query->where('company', 'like', '%'.$request->search.'%');
+                    })->orWhere('name', 'like', '%'.$request->search.'%')->orWhere('location', 'like', '%'.$request->search.'%');
+                })->orderBy('id', 'ASC');
+            } else {
+                $buscounter = \App\BusCounter::whereHas('operator', function ($query) use ($request) {
+                    $query->where('company', 'like', '%'.$request->search.'%');
+                })->orWhere('name', 'like', '%'.$request->search.'%')->orWhere('location', 'like', '%'.$request->search.'%')->orderBy('id', 'ASC');
+            }
+
+        } else {
+            if(user()->roleid == roleid_by_name('busmanager')) {
+                $buscounter = \App\BusCounter::where('operatorid', user()->id)->orderBy('id', 'ASC');
+            } else {
+                $buscounter = \App\BusCounter::orderBy('id', 'ASC');
+            }
         }
 
-        $buscounter = $buscounter->orderBy('id', 'ASC')->get();
+        $buscounters = $buscounter->get();
         $response = [];
 
-        if(!empty($buscounter)&&!empty($busmanager))
+        if(!empty($buscounters))
         {
-            foreach ($buscounter as $buscounter){
+            foreach ($buscounters as $buscounter){
                 $response[] = [
-                    $buscunter->company,
+                    $buscounter->operator->company,
                     $buscounter->name,
                     $buscounter->location,
                     ' <a class="btn btn-primary btn-sm" href="'.route('buscounteredit', ['id' => $buscounter->id]).'">Update</a>'.
                     ' <a class="btn btn-danger btn-sm" href="'.route('buscounterdelete', ['id' => $buscounter->id]).'">Remove</a>'
                 ];
                         
+            }
+        }
+
+        return response()->json($response);
+    }
+
+    public function ajaxbyoperator(Request $request)
+    {
+        $response = [];
+
+        if($request->has('operator') && !empty($request->operator))
+        {
+            $buscounters = \App\BusCounter::where('operatorid', $request->operator)->orderBy('location', 'ASC')->orderBy('name', 'ASC')->get();
+
+            if(!empty($buscounters))
+            {
+                foreach ($buscounters as $buscounter){
+                    $response[] = [
+                        'value' => $buscounter->id,
+                        'text' => $buscounter->name . ' ['.$buscounter->location.']',
+                    ];
+                }
             }
         }
 

@@ -42,7 +42,7 @@
                 @if(user_has_role(['super']))
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Support Staff">
                         <a class="nav-link" href="{{ route('admin') }}">
-                            <i class="fa fa-fw fa-bullhorn"></i>
+                            <i class="fa fa-fw fa-user-circle-o"></i>
                             <span class="nav-link-text">Admin</span>
                         </a>
                     </li>
@@ -59,30 +59,30 @@
 
                 @if(user_has_role(['super','admin','supportstaff']) && user_has_access(['viewbusmanager', 'editbusmanager', 'removebusmanager']))
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Manager">
-                    <a class="nav-link" href="/system/busmanager">
+                    <a class="nav-link" href="{{ route('busmanager') }}">
                       <i class="fa fa-fw fa-user"></i>
                       <span class="nav-link-text">Bus Manager</span>
                     </a>
                 </li>
                 @endif
 
-                    @if(user_has_role(['super','admin','busmanager']) && user_has_access(['viewbuscounter', 'addbuscounter', 'editbuscounter', 'removebuscounter']))
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Counter">
-                        <a class="nav-link" href="/system/buscounter">
-                          <i class="fa fa-fw fa-university"></i>
-                          <span class="nav-link-text">Bus Counter</span>
-                      </a>
-                    </li>
-                    @endif
+                @if(user_has_role(['super','admin','busmanager', 'supportstaff']) && user_has_access(['viewbuscounter', 'addbuscounter', 'editbuscounter', 'removebuscounter']))
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Counter">
+                    <a class="nav-link" href="{{ route('buscounter') }}">
+                      <i class="fa fa-fw fa-university"></i>
+                      <span class="nav-link-text">Bus Counter</span>
+                  </a>
+                </li>
+                @endif
 
-                    @if(user_has_role(['super','admin','busmanager']) && user_has_access(['viewcounterstaff', 'addcounterstaff', 'editcounterstaff', 'removecounterstaff']))
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">
-                        <a class="nav-link" href="/system/counterstaff">
-                          <i class="fa fa-fw fa-users"></i>
-                          <span class="nav-link-text">Counter Staff</span>
-                        </a>
-                    </li>
-                    @endif
+                @if(user_has_role(['super','admin','busmanager', 'supportstaff']) && user_has_access(['viewcounterstaff', 'addcounterstaff', 'editcounterstaff', 'removecounterstaff']))
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">
+                    <a class="nav-link" href="{{ route('counterstaff') }}">
+                      <i class="fa fa-fw fa-users"></i>
+                      <span class="nav-link-text">Counter Staff</span>
+                    </a>
+                </li>
+                @endif
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
                 {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">--}}

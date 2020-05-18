@@ -5,13 +5,13 @@
 @section('body')
     <div class="card">
          <div class="card-header">
-            <i class="fa fa-table"></i>Bus Counter
+            <i class="fa fa-table"></i> Bus Counter
             <a href="{{ route('buscounteradd') }}" class="btn btn-primary btn-sm pull-right">Add</a>
          </div>
         <div class="card-body">
             <div class="row mb-3">
                 <div class="col col-sm-12 col-md-8 col-lg-10">
-                    <input type="text" name="search" class="form-control" placeholder="Search using Counter Name ">
+                    <input type="text" name="search" class="form-control" placeholder="Search using Operator, Counter Name, Location">
                 </div>
                 <div class="col col-sm-12 col-md-4 col-lg-2">
                     <button id="search" class="btn btn-primary btn-block">Search</button>
@@ -59,7 +59,6 @@
                 $('body').on('click', '#search', function (e) {
                     e.preventDefault();
                     const search = $('input[type="text"][name="search"]').val();
-
                     $.ajax({
                         url: '{{ route('ajax_search_buscounter') }}',
                         type: 'POST',
@@ -81,6 +80,8 @@
                                        v[1]
                                    )).append(__td.clone().html(
                                        v[2]
+                                   )).append(__td.clone().html(
+                                       v[3]
                                    ).css({ 'text-align' : 'center'})));
                                 });
                             } else {
@@ -90,8 +91,6 @@
                             }
                         }
                     });
-
-
                 });
             });
         });

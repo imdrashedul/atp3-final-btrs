@@ -8,7 +8,7 @@ class User extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'email', 'password', 'name', 'company', 'operatorid', 'roleid', 'validated', 'registered'
+        'email', 'password', 'name', 'company', 'operatorid', 'counterid', 'roleid', 'validated', 'registered'
     ];
 
     protected $hidden = [
@@ -24,6 +24,11 @@ class User extends Model
     public function operator()
     {
         return $this->belongsTo('App\User', 'operatorid');
+    }
+
+    public function counter()
+    {
+        return $this->belongsTo('App\BusCounter', 'counterid');
     }
 
     public function permissions()

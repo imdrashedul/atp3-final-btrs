@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+   return redirect()->route('login');
+});
+
 Route::group(['middleware' => ['user.guest']], function () {
     Route::get('/login', 'Auth\Login@index')->name('login');
     Route::post('/login', 'Auth\Login@verify')->name('loginVerify');
@@ -32,8 +36,8 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::post('/system/managerole/permission/add/{id}', 'ManageRole@permissionaddpost')->middleware(['access.role:super']);
         Route::get('/system/managerole/permission/edit/{id}', 'ManageRole@permissionedit')->name('managerole_permissionedit')->middleware(['access.role:super']);
         Route::post('/system/managerole/permission/edit/{id}', 'ManageRole@permissioneditpost')->middleware(['access.role:super']);
-        Route::get('/system/managerole/permission/delete/{id}', 'ManageRole@permissiondelete')->name('managerole_permissiondelete')->middleware(['access.role:super,admin,busmanager']);
-        Route::get('/system/permission/user/{id}', 'ManageRole@permissionuser')->name('managerole_permissionuser')->middleware(['access.role:super,admin']);
+        Route::get('/system/managerole/permission/delete/{id}', 'ManageRole@permissiondelete')->name('managerole_permissiondelete')->middleware(['access.role:super,admin']);
+        Route::get('/system/permission/user/{id}', 'ManageRole@permissionuser')->name('managerole_permissionuser')->middleware(['access.role:super,admin,busmanager']);
         Route::post('/system/permission/user/{id}', 'ManageRole@permissionusermodify')->middleware(['access.role:super,admin,busmanager']);
 
         // Site Admins
@@ -73,6 +77,7 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::post('/system/buscounter/edit/{id}', 'BusCounter@editpost')->middleware(['access.feature:editbuscounter']);
         Route::get('/system/buscounter/delete/{id}', 'BusCounter@delete')->name('buscounterdelete')->middleware(['access.feature:removebuscounter']);
         Route::post('/system/buscounter/ajax/search', 'BusCounter@ajaxsearch')->name('ajax_search_buscounter');
+        Route::post('/system/buscounter/ajax/byoperator', 'BusCounter@ajaxbyoperator')->name('ajax_buscounter_by_operator');
 
         //Counter Staff
         Route::get('/system/counterstaff', 'CounterStaff@index')->name('counterstaff')->middleware(['access.feature:viewcounterstaff']);
@@ -82,7 +87,5 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::post('/system/counterstaff/edit/{id}', 'CounterStaff@editpost');
         Route::get('/system/counterstaff/delete/{id}', 'CounterStaff@delete')->name('counterstaffdelete');
         Route::post('/system/counterstaff/ajax/search', 'CounterStaff@ajaxsearch')->name('ajax_search_counterstaff');
-
-
     });
 });
