@@ -87,5 +87,10 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::post('/system/counterstaff/edit/{id}', 'CounterStaff@editpost');
         Route::get('/system/counterstaff/delete/{id}', 'CounterStaff@delete')->name('counterstaffdelete');
         Route::post('/system/counterstaff/ajax/search', 'CounterStaff@ajaxsearch')->name('ajax_search_counterstaff');
+
+        //Profile
+        Route::get('/system/profile', 'Profile@index')->name('profile');
+        Route::post('/system/profile', 'Profile@update')->name('profileupdate');
+
     });
 });

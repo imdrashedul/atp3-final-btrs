@@ -35,15 +35,16 @@ class BusCounter extends Controller
     public function addpost(Request $request)
     {
         $fields = $request->validate([
-            'operator' => 'required',
-            'name' => 'required',
-            'location' => 'required'
-        ]);
 
+            'operator'      => 'required',
+            'name'          => 'required',
+            'location'      => 'required',
+        ]);
+        
         $buscounter = \App\BusCounter::create([
-            'name' => $fields['name'],
-            'operatorid' => $fields['operator'],
-            'location' => $fields['location'],
+            'name' => $request->name,
+            'operatorid' => $request->operator,
+            'location' => $request->location,
         ]);
 
         if($buscounter->id)
