@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
-@section('title', 'BTRS - Manage Bus Counter')
+@section('title', 'BTRS - Manage Buses')
 
 @section('body')
     <div class="card">
-         <div class="card-header">
-             <i class="fa fa-table"></i> Bus Counter
-             @if(user_has_access(['addbuscounter']))
-             <a href="{{ route('buscounteradd') }}" class="btn btn-primary btn-sm pull-right">Add</a>
-             @endif
-         </div>
+        <div class="card-header">
+            <i class="fa fa-table"></i> Buses
+            @if(user_has_access(['addbus']))
+            <a href="{{ route('busesadd') }}" class="btn btn-primary btn-sm pull-right">Add</a>
+            @endif
+        </div>
         <div class="card-body">
             <div class="row mb-3">
                 <div class="col col-sm-12 col-md-8 col-lg-10">
-                    <input type="text" name="search" class="form-control" placeholder="Search using Operator, Counter Name, Location">
+                    <input type="text" name="search" class="form-control" placeholder="Search using Operator, Name, Registration">
                 </div>
                 <div class="col col-sm-12 col-md-4 col-lg-2">
                     <button id="search" class="btn btn-primary btn-block">Search</button>
@@ -21,43 +21,46 @@
             </div>
             <div class="table-responsive">
                 @php
-                $colspan = 2;
+                $colspan = 3;
                 if(user()->role->name!='busmanager') $colspan++;
-                if(user_has_access(['editbuscounter', 'removebuscounter'])) $colspan++;
+                if(user_has_access(['editbus', 'removebus'])) $colspan++;
                 @endphp
                 <table class="table table-bordered table-striped mb-0" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        @if(user()->role->name != 'busmanager')
+                        @if(user()->role->name!='busmanager')
                         <th>Operator</th>
                         @endif
                         <th>Name</th>
-                        <th>Location</th>
-                        @if(user_has_access(['editbuscounter', 'removebuscounter']))
+                        <th>Registration</th>
+                        <th>Seats</th>
+                        @if(user_has_access(['editbus', 'removebus']))
                         <th width="20%">Action</th>
                         @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @if($buscounter && count($buscounter)>0)
-                        @foreach($buscounter as $buscounter)
-                                <tr>
-                                    @if(user()->role->name != 'busmanager')
-                                    <td>{{ $buscounter->operator->company }}</td>
+
+                    @if($buses && count($buses)>0)
+                        @foreach($buses as $buses)
+                            <tr>
+                                @if(user()->role->name!='busmanager')
+                                <td>{{ $buses->operator->company }}</td>
+                                @endif
+                                <td>{{ $buses->name }}</td>
+                                <td>{{ $buses->registration }}</td>
+                                <td>{{ $buses->seats_row*$buses->seats_column }}</td>
+                                @if(user_has_access(['editbus', 'removebus']))
+                                <td style="text-align: center;">
+                                    @if(user_has_access(['editbus']))
+                                    <a class="btn btn-primary btn-sm" href="{{ route('busesedit', ['id' => $buses->id]) }}">Update</a>
                                     @endif
-                                    <td>{{ $buscounter->name }}</td>
-                                    <td>{{ $buscounter->location }}</td>
-                                    @if(user_has_access(['editbuscounter', 'removebuscounter']))
-                                    <td style="text-align: center;">
-                                        @if(user_has_access(['editbuscounter']))
-                                        <a class="btn btn-primary btn-sm" href="{{ route('buscounteredit', ['id' => $buscounter->id]) }}">Update</a>
-                                        @endif
-                                        @if(user_has_access(['removebuscounter']))
-                                        <a class="btn btn-danger btn-sm" href="{{ route('buscounterdelete', ['id' => $buscounter->id]) }}">Remove</a>
-                                        @endif
-                                    </td>
+                                    @if(user_has_access(['removebus']))
+                                    <a class="btn btn-danger btn-sm" href="{{ route('busesdelete', ['id' => $buses->id]) }}">Remove</a>
                                     @endif
-                                </tr>
+                                </td>
+                                @endif
+                            </tr>
                         @endforeach
                     @else
                         <tr>
@@ -79,7 +82,7 @@
                     e.preventDefault();
                     const search = $('input[type="text"][name="search"]').val();
                     $.ajax({
-                        url: '{{ route('ajax_search_buscounter') }}',
+                        url: '{{ route('ajax_search_buses') }}',
                         type: 'POST',
                         data: {
                             _token: '{{ csrf_token() }}',

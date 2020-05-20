@@ -6,7 +6,9 @@
     <div class="card">
         <div class="card-header">
             <i class="fa fa-table"></i> Manage Counter Staff
+            @if(user_has_access(['addcounterstaff']))
             <a href="{{ route('counterstaffadd') }}" class="btn btn-primary btn-sm pull-right">Add</a>
+            @endif
         </div>
         <div class="card-body">
             <div class="row mb-3">
@@ -18,15 +20,24 @@
                 </div>
             </div>
             <div class="table-responsive">
+                @php
+                $colspan = 4;
+                if(user()->role->name!='busmanager') $colspan++;
+                if(user_has_access(['managecounterstaffpermission', 'editcounterstaff', 'removecounterstaff'])) $colspan++;
+                @endphp
                 <table class="table table-bordered table-striped mb-0" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Counter</th>
+                            @if(user()->role->name!='busmanager')
                             <th>Operator</th>
+                            @endif
                             <th>Registered</th>
+                            @if(user_has_access(['managecounterstaffpermission', 'editcounterstaff', 'removecounterstaff']))
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -36,20 +47,28 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{  $user->counter->name . '['.$user->counter->location.']' }}</td>
+                                @if(user()->role->name!='busmanager')
                                 <td>{{ $user->operator->company }}</td>
+                                @endif
                                 <td>{{ date_format(date_create($user->registered),"j M Y g:i a") }}</td>
+                                @if(user_has_access(['managecounterstaffpermission', 'editcounterstaff', 'removecounterstaff']))
                                 <td style="text-align: center;">
-                                    @if(user_has_role(['admin', 'super', 'busmanager']) && user_has_access(['managecounterstaffpermission']))
+                                    @if(user_has_access(['managecounterstaffpermission']))
                                         <a class="btn btn-secondary btn-sm" href="{{ route('managerole_permissionuser', ['id' => $user->id]) }}">Permissions</a>
                                     @endif
+                                    @if(user_has_access(['editcounterstaff']))
                                     <a class="btn btn-primary btn-sm" href="{{ route('counterstaffedit', ['id' => $user->id]) }}">Update</a>
+                                    @endif
+                                    @if(user_has_access(['removecounterstaff']))
                                     <a class="btn btn-danger btn-sm" href="{{ route('counterstaffdelete', ['id' => $user->id]) }}">Remove</a>
+                                    @endif
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">No results found</td>
+                            <td colspan="{{$colspan}}">No results found</td>
                         </tr>
                     @endif
                     </tbody>
@@ -81,24 +100,20 @@
                             __tbody.html('');
                             if(Array.isArray(data) && data.length>0) {
                                 $.each(data, function (i, v) {
-                                    __tbody.append(__tr.clone().append(__td.clone().text(
-                                        v[0]
-                                    )).append(__td.clone().text(
-                                        v[1]
-                                    )).append(__td.clone().html(
-                                        v[2]
-                                    )).append(__td.clone().html(
-                                        v[3]
-                                    )).append(__td.clone().html(
-                                        v[4]
-                                    )).append(__td.clone().html(
-                                        v[5]
-                                    ).css({ 'text-align' : 'center'})));
+                                    const $tr = __tr.clone();
+                                    if(v.length>0) {
+                                        $.each(v, function (_i, _v) {
+                                            const $td = __td.clone().append($.isPlainObject(_v) && 'text' in _v ? _v.text : _v);
+                                            if($.isPlainObject(_v) && 'css' in _v ) $td.css(_v.css);
+                                            $tr.append($td)
+                                        });
+                                    }
+                                    __tbody.append($tr);
                                 });
                             } else {
                                 __tbody.append(__tr.clone().append(__td.clone().text(
                                     'No results found'
-                                ).attr({ colspan: 6 })));
+                                ).attr({ colspan: {{$colspan}} })));
                             }
                         }
                     });

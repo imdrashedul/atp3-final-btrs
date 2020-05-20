@@ -71,8 +71,8 @@ Route::group(['middleware' => ['auth.custom']], function () {
 
         //Bus Counter
         Route::get('/system/buscounter', 'BusCounter@index')->name('buscounter')->middleware(['access.feature:viewbuscounter']);
-        Route::get('/system/buscounter/add', 'BusCounter@add')->name('buscounteradd');
-        Route::post('/system/buscounter/add', 'BusCounter@addpost');
+        Route::get('/system/buscounter/add', 'BusCounter@add')->name('buscounteradd')->middleware(['access.feature:addbuscounter']);
+        Route::post('/system/buscounter/add', 'BusCounter@addpost')->middleware(['access.feature:addbuscounter']);
         Route::get('/system/buscounter/edit/{id}', 'BusCounter@edit')->name('buscounteredit')->middleware(['access.feature:editbuscounter']);
         Route::post('/system/buscounter/edit/{id}', 'BusCounter@editpost')->middleware(['access.feature:editbuscounter']);
         Route::get('/system/buscounter/delete/{id}', 'BusCounter@delete')->name('buscounterdelete')->middleware(['access.feature:removebuscounter']);
@@ -81,12 +81,22 @@ Route::group(['middleware' => ['auth.custom']], function () {
 
         //Counter Staff
         Route::get('/system/counterstaff', 'CounterStaff@index')->name('counterstaff')->middleware(['access.feature:viewcounterstaff']);
-        Route::get('/system/counterstaff/add', 'CounterStaff@add')->name('counterstaffadd');
-        Route::post('/system/counterstaff/add', 'CounterStaff@addpost');
-        Route::get('/system/counterstaff/edit/{id}', 'CounterStaff@edit')->name('counterstaffedit');
-        Route::post('/system/counterstaff/edit/{id}', 'CounterStaff@editpost');
-        Route::get('/system/counterstaff/delete/{id}', 'CounterStaff@delete')->name('counterstaffdelete');
+        Route::get('/system/counterstaff/add', 'CounterStaff@add')->name('counterstaffadd')->middleware(['access.feature:addcounterstaff']);
+        Route::post('/system/counterstaff/add', 'CounterStaff@addpost')->middleware(['access.feature:addcounterstaff']);
+        Route::get('/system/counterstaff/edit/{id}', 'CounterStaff@edit')->name('counterstaffedit')->middleware(['access.feature:editcounterstaff']);
+        Route::post('/system/counterstaff/edit/{id}', 'CounterStaff@editpost')->middleware(['access.feature:editcounterstaff']);
+        Route::get('/system/counterstaff/delete/{id}', 'CounterStaff@delete')->name('counterstaffdelete')->middleware(['access.feature:removecounterstaff']);
         Route::post('/system/counterstaff/ajax/search', 'CounterStaff@ajaxsearch')->name('ajax_search_counterstaff');
+
+        //Bus
+        Route::get('/system/buses', 'ManageBus@index')->name('buses')->middleware(['access.feature:viewbus']);
+        Route::get('/system/buses/add', 'ManageBus@add')->name('busesadd')->middleware(['access.feature:addbus']);
+        Route::post('/system/buses/add', 'ManageBus@addpost')->middleware(['access.feature:addbus']);
+        Route::get('/system/buses/edit/{id}', 'ManageBus@edit')->name('busesedit')->middleware(['access.feature:editbus']);
+        Route::post('/system/buses/edit/{id}', 'ManageBus@editpost')->middleware(['access.feature:editbus']);
+        Route::get('/system/buses/delete/{id}', 'ManageBus@delete')->name('busesdelete')->middleware(['access.feature:removebus']);
+        Route::post('/system/buses/ajax/search', 'ManageBus@ajaxsearch')->name('ajax_search_buses');
+        Route::post('/system/buses/ajax/byoperator', 'ManageBus@ajaxbyoperator')->name('ajax_buses_by_operator');
 
         //Profile
         Route::get('/system/profile', 'Profile@index')->name('profile');

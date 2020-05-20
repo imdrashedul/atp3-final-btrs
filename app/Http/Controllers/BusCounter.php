@@ -150,14 +150,22 @@ class BusCounter extends Controller
         if(!empty($buscounters))
         {
             foreach ($buscounters as $buscounter){
-                $response[] = [
-                    $buscounter->operator->company,
-                    $buscounter->name,
-                    $buscounter->location,
-                    ' <a class="btn btn-primary btn-sm" href="'.route('buscounteredit', ['id' => $buscounter->id]).'">Update</a>'.
-                    ' <a class="btn btn-danger btn-sm" href="'.route('buscounterdelete', ['id' => $buscounter->id]).'">Remove</a>'
-                ];
-                        
+                $row = [];
+                if(user()->role->name!='busmanager') $row[] = $buscounter->operator->company;
+                $row[] = $buscounter->name;
+                $row[] = $buscounter->location;
+                $actions = [ 'text' => '', 'css' => [
+                    'text-align' => 'center'
+                ]];
+
+                if(user_has_access(['editbuscounter']))
+                    $actions['text'] .= ' <a class="btn btn-primary btn-sm" href="'.route('buscounteredit', ['id' => $buscounter->id]).'">Update</a>';
+                if(user_has_access(['removebuscounter']))
+                    $actions['text'] .= ' <a class="btn btn-danger btn-sm" href="'.route('buscounterdelete', ['id' => $buscounter->id]).'">Remove</a>';
+                if(!empty($actions))
+                    $row[] = $actions;
+
+                $response[] = $row;
             }
         }
 

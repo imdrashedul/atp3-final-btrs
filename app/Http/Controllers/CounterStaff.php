@@ -183,16 +183,26 @@ class CounterStaff extends Controller
         if(!empty($counterstaffs))
         {
             foreach ($counterstaffs as $counterstaff){
-                $response[] = [
-                    $counterstaff->name,
-                    $counterstaff->email,
-                    $counterstaff->counter->name . '['.$counterstaff->counter->location.']',
-                    $counterstaff->operator->company,
-                    date_format(date_create($counterstaff->registered),"j M Y g:i a"),
-                    (user_has_role(['admin', 'super', 'busmanager']) && user_has_access(['managecounterstaffpermission']) ? '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $counterstaff->id]).'">Permissions</a>' : '' ).
-                    ' <a class="btn btn-primary btn-sm" href="'.route('counterstaffedit', ['id' => $counterstaff->id]).'">Update</a>'.
-                    ' <a class="btn btn-danger btn-sm" href="'.route('counterstaffdelete', ['id' => $counterstaff->id]).'">Remove</a>'
-                ];
+                $row = [];
+                $row[] = $counterstaff->name;
+                $row[] = $counterstaff->email;
+                $row[] = $counterstaff->counter->name . '['.$counterstaff->counter->location.']';
+                if(user()->role->name!='busmanager') $row[] = $counterstaff->operator->company;
+                $row[] = date_format(date_create($counterstaff->registered),"j M Y g:i a");
+                $actions = [ 'text' => '', 'css' => [
+                    'text-align' => 'center'
+                ]];
+
+                if(user_has_access(['managecounterstaffpermission']))
+                    $actions['text'] .= '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $counterstaff->id]).'">Permissions</a>';
+                if(user_has_access(['editcounterstaff']))
+                    $actions['text'] .= ' <a class="btn btn-primary btn-sm" href="'.route('counterstaffedit', ['id' => $counterstaff->id]).'">Update</a>';
+                if(user_has_access(['removebus']))
+                    $actions['text'] .= ' <a class="btn btn-danger btn-sm" href="'.route('counterstaffdelete', ['id' => $counterstaff->id]).'">Remove</a>';
+                if(!empty($actions))
+                    $row[] = $actions;
+
+                $response[] = $row;
             }
         }
 

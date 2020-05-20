@@ -84,14 +84,14 @@
                 </li>
                 @endif
 
-                {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">--}}
-                    {{--<a class="nav-link" href="/system/buses">--}}
-                      {{--<i class="fa fa-fw fa-bus"></i>--}}
-                      {{--<span class="nav-link-text">Manage Bus</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--@endif--}}
+                @if(user_has_role(['super','admin','busmanager', 'supportstaff']) && user_has_access(['viewbus', 'addbus', 'editbus', 'removebus']))
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Counter Staff">
+                    <a class="nav-link" href="{{ route('buses') }}">
+                      <i class="fa fa-fw fa-bus"></i>
+                      <span class="nav-link-text">Manage Bus</span>
+                    </a>
+                </li>
+                @endif
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
                 {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Schedule">--}}
