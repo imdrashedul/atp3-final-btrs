@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49ceb5e1-451b-45b6-9dfc-ac3c619c7b53" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/system/buses/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/system/buses/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/system/buses/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/system/busschedule/add.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/system/busschedule/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/system/busschedule/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BusCounter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BusCounter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BusManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BusManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BusSchedule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BusSchedule.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CounterStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CounterStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManageBus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManageBus.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SupportStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SupportStaff.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/buscounter/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/buscounter/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/system/counterstaff/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/counterstaff/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/system/busmanager/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/busmanager/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,15 +31,15 @@
           <entry key="project.closed" value="13" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="3" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.open.time.9" value="5" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -46,17 +47,18 @@
           <entry key="env" value="1" />
           <entry key="gitignore" value="3" />
           <entry key="js" value="1" />
-          <entry key="php" value="168" />
+          <entry key="php" value="184" />
+          <entry key="php___jb_tmp___" value="1" />
           <entry key="sql" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="1" />
-          <entry key="Blade" value="69" />
+          <entry key="Blade" value="79" />
           <entry key="JavaScript" value="1" />
-          <entry key="PHP" value="99" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PHP" value="105" />
+          <entry key="PLAIN_TEXT" value="4" />
           <entry key="SQL" value="2" />
         </counts>
       </usages-collector>
@@ -65,14 +67,14 @@
           <entry key="dummy" value="4" />
           <entry key="env" value="5" />
           <entry key="gitignore" value="15" />
-          <entry key="php" value="17151" />
+          <entry key="php" value="19428" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="5" />
-          <entry key="Blade" value="6527" />
-          <entry key="PHP" value="10624" />
+          <entry key="Blade" value="7762" />
+          <entry key="PHP" value="11666" />
           <entry key="PLAIN_TEXT" value="19" />
         </counts>
       </usages-collector>
@@ -81,67 +83,49 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Bus.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusSchedule.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusCounter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="664">
-              <caret line="167" column="35" selection-start-line="167" selection-start-column="35" selection-end-line="167" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ManageBus.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="173" column="35" lean-forward="true" selection-start-line="157" selection-start-column="16" selection-end-line="173" selection-end-column="35" />
+            <state relative-caret-position="137">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
               <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
+                <element signature="e#40#52#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/system/buses/edit.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/system/busschedule/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" column="79" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/system/buscounter/edit.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="23" column="153" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="153" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-293">
-              <caret line="74" column="114" lean-forward="true" selection-start-line="74" selection-start-column="114" selection-end-line="74" selection-end-column="114" />
+            <state relative-caret-position="459">
+              <caret line="55" column="100" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="100" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/system/busschedule/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="11" selection-start-line="11" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="11" column="97" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="97" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CounterStaff.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="204" column="35" selection-start-line="204" selection-start-column="35" selection-end-line="204" selection-end-column="35" />
+            <state relative-caret-position="2268">
+              <caret line="86" column="34" selection-start-line="73" selection-start-column="8" selection-end-line="86" selection-end-column="34" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -150,19 +134,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
+            <state relative-caret-position="1161">
+              <caret line="43" column="96" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="96" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/system/buscounter/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusCounter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="26" selection-end-column="23" />
+            <state relative-caret-position="4482">
+              <caret line="167" column="35" selection-start-line="152" selection-start-column="15" selection-end-line="167" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="104" column="94" selection-start-line="104" selection-start-column="79" selection-end-line="104" selection-end-column="94" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2619">
+              <caret line="97" column="67" selection-start-line="97" selection-start-column="67" selection-end-line="97" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -170,8 +172,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/system/buses/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="107" column="35" lean-forward="true" selection-start-line="97" selection-start-column="32" selection-end-line="107" selection-end-column="35" />
+            <state relative-caret-position="1836">
+              <caret line="68" column="26" selection-end-line="119" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -182,10 +184,18 @@
     <findStrings>
       <find>&lt;% if</find>
       <find>counter</find>
+      <find>buses</find>
+      <find>$bus</find>
+      <find>buschedule</find>
     </findStrings>
     <replaceStrings>
       <replace>user()-&gt;role</replace>
       <replace>@if</replace>
+      <replace>buschedules</replace>
+      <replace>buschedule</replace>
+      <replace>busschedules</replace>
+      <replace>$busschedule</replace>
+      <replace>busschedule</replace>
     </replaceStrings>
     <dirStrings>
       <dir>H:\ATP3\laravel\final-term\atp3-final-btrs\resources\views\system\managerole</dir>
@@ -197,12 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/Login.php" />
-        <option value="$PROJECT_DIR$/app/Providers/HelperServicerProvider.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/VerifyGuest.php" />
-        <option value="$PROJECT_DIR$/resources/views/system/dashboard.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/UserAccesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/UserPermission.php" />
         <option value="$PROJECT_DIR$/app/RolePermission.php" />
@@ -226,10 +230,7 @@
         <option value="$PROJECT_DIR$/resources/views/system/admin/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/system/supportstaff/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/system/admin/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SupportStaff.php" />
-        <option value="$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/resources/views/system/busmanager/index.blade.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/AuthCustom.php" />
         <option value="$PROJECT_DIR$/resources/views/system/buscounter/add.blade.php" />
@@ -237,7 +238,6 @@
         <option value="$PROJECT_DIR$/resources/views/system/counterstaff/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/system/counterstaff/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ManageRole.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
         <option value="$PROJECT_DIR$/app/Bus.php" />
         <option value="$PROJECT_DIR$/resources/views/system/buses/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/system/buses/edit.blade.php" />
@@ -245,9 +245,19 @@
         <option value="$PROJECT_DIR$/resources/views/system/buses/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BusCounter.php" />
         <option value="$PROJECT_DIR$/resources/views/system/buscounter/index.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/system/counterstaff/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/system/busmanager/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CounterStaff.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BusManager.php" />
+        <option value="$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SupportStaff.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/BusSchedule.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/system/busschedule/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/system/busschedule/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BusSchedule.php" />
+        <option value="$PROJECT_DIR$/resources/views/system/busschedule/edit.blade.php" />
       </list>
     </option>
   </component>
@@ -364,8 +374,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="753" />
-    <option name="width" value="1174" />
+    <option name="x" value="605" />
+    <option name="width" value="1322" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -373,7 +383,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -390,12 +399,6 @@
               <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
               <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -404,19 +407,6 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Middleware" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Providers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
@@ -479,31 +469,7 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="buscounter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="buses" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="busmanager" type="462c0819:PsiDirectoryNode" />
+              <item name="busschedule" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
@@ -516,36 +482,13 @@
             <path>
               <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
               <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="managerole" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="supportstaff" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-              <item name="validation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="atp3-final-btrs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atp3-final-btrs" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -602,18 +545,21 @@
       <workItem from="1589681884644" duration="5064000" />
       <workItem from="1589690357011" duration="1275000" />
       <workItem from="1589758524527" duration="19103000" />
-      <workItem from="1589871279209" duration="13380000" />
+      <workItem from="1589871279209" duration="21562000" />
+      <workItem from="1589945396963" duration="2304000" />
+      <workItem from="1589948023386" duration="1870000" />
+      <workItem from="1589950127660" duration="1539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119703000" />
+    <option name="totallyTimeSpent" value="133598000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12686567" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16044776" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -642,48 +588,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/system/managerole/permissionadd.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="27" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/UserPermission.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/RolePermission.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/managerole/userpermission.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="18" column="91" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/UserAccesControllerFeature.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/UserAccesControllerRole.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyValidation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -792,13 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/busmanager/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/atp3_finalterm.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3834">
@@ -834,13 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="49" column="26" lean-forward="true" selection-start-line="30" selection-start-column="20" selection-end-line="49" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -858,13 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SupportStaff.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -872,31 +755,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="43" column="115" selection-start-line="43" selection-start-column="115" selection-end-line="43" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ManageRole.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2646">
           <caret line="81" column="98" selection-start-line="81" selection-start-column="98" selection-end-line="81" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -935,17 +797,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Bus.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="259">
+          <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-293">
-          <caret line="74" column="114" lean-forward="true" selection-start-line="74" selection-start-column="114" selection-end-line="74" selection-end-column="114" />
+        <state relative-caret-position="1647">
+          <caret line="118" column="35" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/busmanager/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2295">
+          <caret line="103" column="35" selection-start-line="103" selection-start-column="35" selection-end-line="103" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -956,44 +825,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/buses/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/BusSchedule.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="107" column="35" lean-forward="true" selection-start-line="97" selection-start-column="32" selection-end-line="107" selection-end-column="35" />
+        <state relative-caret-position="621">
+          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Bus.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
+        <state relative-caret-position="216">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="19" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ManageBus.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="173" column="35" lean-forward="true" selection-start-line="157" selection-start-column="16" selection-end-line="173" selection-end-column="35" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="5346">
+          <caret line="200" column="5" selection-start-line="10" selection-start-column="4" selection-end-line="200" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusCounter.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/system/busschedule/add.blade.php___jb_tmp___" />
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SupportStaff.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="167" column="35" selection-start-line="167" selection-start-column="35" selection-end-line="167" selection-end-column="35" />
+        <state relative-caret-position="3969">
+          <caret line="148" column="35" selection-start-line="148" selection-start-column="35" selection-end-line="148" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/busschedule/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1404">
+          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CounterStaff.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="204" column="35" selection-start-line="204" selection-start-column="35" selection-end-line="204" selection-end-column="35" />
+        <state relative-caret-position="2268">
+          <caret line="86" column="34" selection-start-line="73" selection-start-column="8" selection-end-line="86" selection-end-column="34" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/supportstaff/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1161">
+          <caret line="43" column="96" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusCounter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4482">
+          <caret line="167" column="35" selection-start-line="152" selection-start-column="15" selection-end-line="167" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2619">
+          <caret line="97" column="67" selection-start-line="97" selection-start-column="67" selection-end-line="97" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/buses/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1836">
+          <caret line="68" column="26" selection-end-line="119" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/busschedule/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="55" column="100" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BusSchedule.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+          <folding>
+            <element signature="e#40#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="104" column="94" selection-start-line="104" selection-start-column="79" selection-end-line="104" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/counterstaff/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" column="97" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/busschedule/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="11" selection-start-line="11" selection-end-line="12" />
         </state>
       </provider>
     </entry>

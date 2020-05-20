@@ -54,12 +54,12 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::get('/system/validation/remove/{id}', 'Validation@delete')->name('validation_delete');
 
         // Support Staff
-        Route::get('/system/supportstaff', 'SupportStaff@index')->name('supportstaff');
-        Route::get('/system/supportstaff/add', 'SupportStaff@add')->name('supportstaffadd');
-        Route::post('/system/supportstaff/add', 'SupportStaff@addpost');
-        Route::get('/system/supportstaff/edit/{id}', 'SupportStaff@edit')->name('supportstaffedit');
-        Route::post('/system/supportstaff/edit/{id}', 'SupportStaff@editpost');
-        Route::get('/system/supportstaff/delete/{id}', 'SupportStaff@delete')->name('supportstaffdelete');
+        Route::get('/system/supportstaff', 'SupportStaff@index')->name('supportstaff')->middleware(['access.feature:viewsupportstaff']);
+        Route::get('/system/supportstaff/add', 'SupportStaff@add')->name('supportstaffadd')->middleware(['access.feature:addsupportstaff']);
+        Route::post('/system/supportstaff/add', 'SupportStaff@addpost')->middleware(['access.feature:addsupportstaff']);
+        Route::get('/system/supportstaff/edit/{id}', 'SupportStaff@edit')->name('supportstaffedit')->middleware(['access.feature:editsupportstaff']);
+        Route::post('/system/supportstaff/edit/{id}', 'SupportStaff@editpost')->middleware(['access.feature:editsupportstaff']);
+        Route::get('/system/supportstaff/delete/{id}', 'SupportStaff@delete')->name('supportstaffdelete')->middleware(['access.feature:removesupportstaff']);
         Route::post('/system/supportstaff/ajax/search', 'SupportStaff@ajaxsearch')->name('ajax_search_supportstaff');
 
         //Bus Manager
@@ -97,6 +97,15 @@ Route::group(['middleware' => ['auth.custom']], function () {
         Route::get('/system/buses/delete/{id}', 'ManageBus@delete')->name('busesdelete')->middleware(['access.feature:removebus']);
         Route::post('/system/buses/ajax/search', 'ManageBus@ajaxsearch')->name('ajax_search_buses');
         Route::post('/system/buses/ajax/byoperator', 'ManageBus@ajaxbyoperator')->name('ajax_buses_by_operator');
+
+        //Bus Schedule
+        Route::get('/system/busschedule', 'BusSchedule@index')->name('busschedule')->middleware(['access.feature:viewbusschedule']);
+        Route::get('/system/busschedule/add', 'BusSchedule@add')->name('busscheduleadd')->middleware(['access.feature:addbusschedule']);
+        Route::post('/system/busschedule/add', 'BusSchedule@addpost')->middleware(['access.feature:addbusschedule']);
+        Route::get('/system/busschedule/edit/{id}', 'BusSchedule@edit')->name('busscheduleedit')->middleware(['access.feature:editbusschedule']);
+        Route::post('/system/busschedule/edit/{id}', 'BusSchedule@editpost')->middleware(['access.feature:editbusschedule']);
+        Route::get('/system/busschedule/delete/{id}', 'BusSchedule@delete')->name('busscheduledelete')->middleware(['access.feature:removebusschedule']);
+        Route::post('/system/busschedule/ajax/search', 'BusSchedule@ajaxsearch')->name('ajax_search_busschedule');
 
         //Profile
         Route::get('/system/profile', 'Profile@index')->name('profile');

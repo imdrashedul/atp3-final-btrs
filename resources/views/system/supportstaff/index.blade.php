@@ -6,7 +6,9 @@
     <div class="card">
         <div class="card-header">
             <i class="fa fa-table"></i> Support Staffs
+            @if(user_has_access(['addsupportstaff']))
             <a href="{{ route('supportstaffadd') }}" class="btn btn-primary btn-sm pull-right">Add</a>
+            @endif
         </div>
         <div class="card-body">
             <div class="row mb-3">
@@ -18,13 +20,19 @@
                 </div>
             </div>
             <div class="table-responsive">
+                @php
+                $colspan = 3;
+                if(user_has_access(['managesupportstaffpermission','editsupportstaff','removesupportstaff'])) $colspan++;
+                @endphp
                 <table class="table table-bordered table-striped mb-0" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Registered</th>
+                        @if(user_has_access(['managesupportstaffpermission','editsupportstaff','removesupportstaff']))
                         <th width="20%">Action</th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
@@ -34,18 +42,24 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ date_format(date_create($user->registered),"j M Y g:i a") }}</td>
+                                @if(user_has_access(['managesupportstaffpermission','editsupportstaff','removesupportstaff']))
                                 <td style="text-align: center;">
-                                    @if(user_has_role(['admin', 'super']) && user_has_access(['managesupportstaffpermission']))
+                                    @if(user_has_access(['managesupportstaffpermission']))
                                     <a class="btn btn-secondary btn-sm" href="{{ route('managerole_permissionuser', ['id' => $user->id]) }}">Permissions</a>
                                     @endif
+                                    @if(user_has_access(['editsupportstaff']))
                                     <a class="btn btn-primary btn-sm" href="{{ route('supportstaffedit', ['id' => $user->id]) }}">Update</a>
+                                    @endif
+                                    @if(user_has_access(['removesupportstaff']))
                                     <a class="btn btn-danger btn-sm" href="{{ route('supportstaffdelete', ['id' => $user->id]) }}">Remove</a>
+                                    @endif
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="4">No results found</td>
+                            <td colspan="{{$colspan}}">No results found</td>
                         </tr>
                     @endif
                     </tbody>
@@ -78,20 +92,20 @@
                             __tbody.html('');
                             if(Array.isArray(data) && data.length>0) {
                                 $.each(data, function (i, v) {
-                                   __tbody.append(__tr.clone().append(__td.clone().text(
-                                       v[0]
-                                   )).append(__td.clone().text(
-                                       v[1]
-                                   )).append(__td.clone().text(
-                                       v[2]
-                                   )).append(__td.clone().html(
-                                       v[3]
-                                   ).css({ 'text-align' : 'center'})));
+                                    const $tr = __tr.clone();
+                                    if(v.length>0) {
+                                        $.each(v, function (_i, _v) {
+                                            const $td = __td.clone().append($.isPlainObject(_v) && 'text' in _v ? _v.text : _v);
+                                            if($.isPlainObject(_v) && 'css' in _v ) $td.css(_v.css);
+                                            $tr.append($td)
+                                        });
+                                    }
+                                    __tbody.append($tr);
                                 });
                             } else {
                                 __tbody.append(__tr.clone().append(__td.clone().text(
                                     'No results found'
-                                ).attr({ colspan: 4 })));
+                                ).attr({ colspan: {{$colspan}} })));
                             }
                         }
                     });

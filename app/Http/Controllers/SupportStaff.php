@@ -10,8 +10,7 @@ class SupportStaff extends Controller
     public function __construct()
     {
         $this->middleware([
-           'access.role:super,admin',
-           'access.feature:managesupportstaffs'
+           'access.role:super,admin'
         ]);
     }
 
@@ -130,14 +129,24 @@ class SupportStaff extends Controller
         if(!empty($users))
         {
             foreach ($users as $user) {
-                $response[] = [
-                    $user->name,
-                    $user->email,
-                    date_format(date_create($user->registered),"j M Y g:i a"),
-                    (user_has_role(['admin', 'super']) && user_has_access(['managesupportstaffpermission']) ? '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $user->id]).'">Permissions</a>' : '').
-                    ' <a class="btn btn-primary btn-sm" href="'.route('supportstaffedit', ['id' => $user->id]).'">Update</a>'.
-                    ' <a class="btn btn-danger btn-sm" href="'.route('supportstaffdelete', ['id' => $user->id]).'">Remove</a>'
-                ];
+                $row = [];
+                $row[] = $user->name;
+                $row[] = $user->email;
+                $row[] = date_format(date_create($user->registered),"j M Y g:i a");
+                $actions = [ 'text' => '', 'css' => [
+                    'text-align' => 'center'
+                ]];
+
+                if(user_has_access(['managesupportstaffpermission']))
+                    $actions['text'] .= '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $user->id]).'">Permissions</a>';
+                if(user_has_access(['editsupportstaff']))
+                    $actions['text'] .= ' <a class="btn btn-primary btn-sm" href="'.route('supportstaffedit', ['id' => $user->id]).'">Update</a>';
+                if(user_has_access(['removesupportstaff']))
+                    $actions['text'] .= ' <a class="btn btn-danger btn-sm" href="'.route('supportstaffdelete', ['id' => $user->id]).'">Remove</a>';
+                if(!empty($actions))
+                    $row[] = $actions;
+
+                $response[] = $row;
             }
         }
 

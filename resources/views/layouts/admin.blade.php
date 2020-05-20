@@ -48,7 +48,7 @@
                     </li>
                 @endif
 
-                @if(user_has_role(['super','admin']) && user_has_access(['managesupportstaffs']))
+                @if(user_has_role(['super','admin']) && user_has_access(['viewsupportstaffs', 'addsupportstaff', 'editsupportstaff', 'managesupportstaffpermission']))
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Support Staff">
                     <a class="nav-link" href="{{ route('supportstaff') }}">
                       <i class="fa fa-fw fa-bullhorn"></i>
@@ -93,14 +93,14 @@
                 </li>
                 @endif
 
-                {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
-                {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Schedule">--}}
-                    {{--<a class="nav-link" href="/system/busschedule">--}}
-                      {{--<i class="fa fa-fw fa-clock-o"></i>--}}
-                      {{--<span class="nav-link-text">Bus Schedule</span>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--@endif--}}
+                @if(user_has_role(['super','admin','busmanager', 'supportstaff']) && user_has_access(['viewbusschedule', 'addbusschedule', 'editbusschedule', 'removebusschedule']) )
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bus Schedule">
+                    <a class="nav-link" href="{{ route('busschedule') }}">
+                      <i class="fa fa-fw fa-clock-o"></i>
+                      <span class="nav-link-text">Bus Schedule</span>
+                    </a>
+                </li>
+                @endif
 
                 {{--@if( user()->role == 'admin' || user()->role == 'supportstaff' || user()->role == 'busmanager' )--}}
                 {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tickets">--}}

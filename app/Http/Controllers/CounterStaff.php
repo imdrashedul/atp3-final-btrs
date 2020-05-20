@@ -197,7 +197,7 @@ class CounterStaff extends Controller
                     $actions['text'] .= '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $counterstaff->id]).'">Permissions</a>';
                 if(user_has_access(['editcounterstaff']))
                     $actions['text'] .= ' <a class="btn btn-primary btn-sm" href="'.route('counterstaffedit', ['id' => $counterstaff->id]).'">Update</a>';
-                if(user_has_access(['removebus']))
+                if(user_has_access(['removecounterstaff']))
                     $actions['text'] .= ' <a class="btn btn-danger btn-sm" href="'.route('counterstaffdelete', ['id' => $counterstaff->id]).'">Remove</a>';
                 if(!empty($actions))
                     $row[] = $actions;

@@ -98,15 +98,25 @@ class BusManager extends Controller
         if(!empty($users))
         {
             foreach ($users as $user) {
-                $response[] = [
-                    $user->name,
-                    $user->email,
-                    date_format(date_create($user->registered),"j M Y g:i a"),
-                    $user->company,
-                    (user_has_role(['admin', 'super', 'supportstaff']) && user_has_access(['managebusmanagerpermission']) ? '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $user->id]).'">Permissions</a>' : '').
-                    ' <a class="btn btn-primary btn-sm" href="'.route('busmanageredit', ['id' => $user->id]).'">Update</a>'.
-                    ' <a class="btn btn-danger btn-sm" href="'.route('busmanagerdelete', ['id' => $user->id]).'">Remove</a>'
-                ];
+                $row = [];
+                $row[] = $user->name;
+                $row[] = $user->email;
+                $row[] = date_format(date_create($user->registered),"j M Y g:i a");
+                $row[] = $user->company;
+                $actions = [ 'text' => '', 'css' => [
+                    'text-align' => 'center'
+                ]];
+
+                if(user_has_access(['managebusmanagerpermission']))
+                    $actions['text'] .= '<a class="btn btn-secondary btn-sm" href="'.route('managerole_permissionuser', ['id' => $user->id]).'">Permissions</a>';
+                if(user_has_access(['editbusmanager']))
+                    $actions['text'] .= ' <a class="btn btn-primary btn-sm" href="'.route('busmanageredit', ['id' => $user->id]).'">Update</a>';
+                if(user_has_access(['removebusmanager']))
+                    $actions['text'] .= ' <a class="btn btn-danger btn-sm" href="'.route('busmanagerdelete', ['id' => $user->id]).'">Remove</a>';
+                if(!empty($actions))
+                    $row[] = $actions;
+
+                $response[] = $row;
             }
         }
 
